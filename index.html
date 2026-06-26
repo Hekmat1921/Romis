@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>یادگاری خاطرات ما</title>
+    
+    <!-- فونت و آیکون‌ها -->
+    <link rel="stylesheet" href="assets/icons/style.css" />
+    <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+
+    <!-- ================================ -->
+    <!-- بخش اول: خوش‌آمدگویی              -->
+    <!-- ================================ -->
+    <section id="welcome" class="section welcome">
+        <div class="welcome-content">
+            <h1 class="main-title">یادگاری خاطرات ما</h1>
+            <p class="sub-title">برای رومیصا، از کسی که همیشه یادت می‌کنه</p>
+            <button class="music-toggle" aria-label="پخش موسیقی پس‌زمینه">
+                🎵
+            </button>
+        </div>
+    </section>
+
+    <!-- ================================ -->
+    <!-- بخش دوم: کارت‌های خاطرات          -->
+    <!-- ================================ -->
+    <section id="memories" class="section memories">
+        <h2 class="section-title">خاطرات خوب</h2>
+        <div class="cards-grid">
+            <!-- کارت ۱ -->
+            <div class="memory-card" data-id="1">
+                <div class="card-icon">🌸</div>
+                <h3>اولین دیدار</h3>
+                <p class="card-preview">اولین باری که همدیگه رو دیدیم...</p>
+                <div class="card-full hidden">
+                    اولین باری که همدیگه رو دیدیم، یه روز بهاری بود. هوا فوق‌العاده بود و من یادم نمیاد که چی گفتم، اما یادم میاد که چقدر لبخند زدی.
+                </div>
+                <button class="star-btn" aria-label="ذخیره خاطره">☆</button>
+            </div>
+
+            <!-- کارت ۲ -->
+            <div class="memory-card" data-id="2">
+                <div class="card-icon">☕</div>
+                <h3>قهوه‌های نیمه‌شب</h3>
+                <p class="card-preview">شب‌هایی که تا صبح حرف زدیم...</p>
+                <div class="card-full hidden">
+                    شب‌هایی که تا صبح حرف زدیم، با یه فنجون قهوه و هزار تا موضوع بی‌ربط. هنوزم اون قهوه‌ها رو یادمه.
+                </div>
+                <button class="star-btn" aria-label="ذخیره خاطره">☆</button>
+            </div>
+
+            <!-- کارت ۳ -->
+            <div class="memory-card" data-id="3">
+                <div class="card-icon">🌅</div>
+                <h3>غروب کنار دریا</h3>
+                <p class="card-preview">یه غروب قشنگ کنار دریا...</p>
+                <div class="card-full hidden">
+                    غروب اون روز یه جور خاصی قشنگ بود. انگار دریا هم می‌دونست که داریم یه خاطره‌ی خاص می‌سازیم.
+                </div>
+                <button class="star-btn" aria-label="ذخیره خاطره">☆</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================ -->
+    <!-- بخش سوم: تایم‌لاین لحظات          -->
+    <!-- ================================ -->
+    <section id="timeline" class="section timeline">
+        <h2 class="section-title">لحظات به‌یادماندنی</h2>
+        <div class="timeline-container">
+            <div class="timeline-item">
+                <span class="timeline-date">بهار ۱۴۰۰</span>
+                <p>آشنایی و اولین مکالمه</p>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-date">تابستان ۱۴۰۰</span>
+                <p>اولین دیدار حضوری</p>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-date">پاییز ۱۴۰۱</span>
+                <p>یه سفر کوتاه و خاطره‌انگیز</p>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-date">زمستان ۱۴۰۲</span>
+                <p>شب‌های طولانی و حرف‌های بی‌پایان</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================ -->
+    <!-- بخش چهارم: پیام در بطری          -->
+    <!-- ================================ -->
+    <section id="message" class="section message">
+        <div class="letter-container">
+            <h2 class="section-title">پیام نهایی</h2>
+            <div class="letter">
+                <p>رومیصای عزیز،</p>
+                <p>این صفحه رو ساختم تا همیشه یادمون بمونه که چقدر لحظات قشنگی کنار هم داشتیم.</p>
+                <p>امیدوارم هر وقت دلت گرفت، بیای اینجا و لبخند بزنی.</p>
+                <p>همیشه دوستت دارم،</p>
+                <p class="signature">دوست همیشگی‌ات</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================ -->
+    <!-- بخش پنجم: گوشه‌ای از نقل‌قول‌ها  -->
+    <!-- ================================ -->
+    <section id="quotes" class="section quotes">
+        <h2 class="section-title">چیزایی که یاد گرفتم</h2>
+        <div class="quotes-container">
+            <div class="quote-item active">
+                <p>"ازت یاد گرفتم که مهربونی یعنی چی."</p>
+            </div>
+            <div class="quote-item">
+                <p>"خندیدن با تو، بهترین درمان هر روز بدی بود."</p>
+            </div>
+            <div class="quote-item">
+                <p>"یادت دادم که بعضی از آدما، برای همیشه توی قلب می‌مونن."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================ -->
+    <!-- بخش ششم: آرزوها                 -->
+    <!-- ================================ -->
+    <section id="wishes" class="section wishes">
+        <h2 class="section-title">آرزوهای من برات</h2>
+        <ul class="wishes-list">
+            <li>❤️ همیشه شاد باشی</li>
+            <li>🌱 به آرزوهات برسی</li>
+            <li>🌟 هیچوقت تنهایی رو حس نکنی</li>
+            <li>💫 هر روزت بهتر از دیروز باشه</li>
+        </ul>
+    </section>
+
+    <!-- ================================ -->
+    <!-- دکمه‌ی بازگشت به بالا            -->
+    <!-- ================================ -->
+    <button id="backToTop" class="back-to-top" aria-label="بازگشت به بالا">↑</button>
+
+    <!-- ================================ -->
+    <!-- فوتر                           -->
+    <!-- ================================ -->
+    <footer class="footer">
+        <p>ساخته شده با احترام و خاطرات خوب - زمستان ۱۴۰۳</p>
+        <p class="version">نسخه 1.0</p>
+        <p class="made-with">ساخته شده با ❤️</p>
+        <p class="last-visit">آخرین بازدید: <span id="lastVisit">امروز</span></p>
+    </footer>
+
+    <!-- جاوااسکریپت -->
+    <script src="scripts/app.js"></script>
+</body>
+</html>
