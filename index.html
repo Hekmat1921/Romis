@@ -1,158 +1,366 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>یادگاری خاطرات ما</title>
-    
-    <!-- فونت و آیکون‌ها -->
-    <link rel="stylesheet" href="assets/icons/style.css" />
-    <link rel="stylesheet" href="styles/main.css" />
+    <title>یادگاری ماندگار</title>
+
+    <!-- فونت مدرن و زیبا برای متن فارسی -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* امکان اسکرول بدون تغییر در طراحی */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(ellipse at 30% 40%, #1e0f14, #0b0508);
+            font-family: 'Inter', 'Noto Nastaliq Urdu', sans-serif;
+            direction: rtl;
+            padding: 20px;
+        }
+
+        /* پس‌زمینه‌ی مواج و پویا */
+        .bg-aurora {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background: radial-gradient(circle at 70% 30%, rgba(255, 140, 180, 0.05) 0%, transparent 60%),
+                        radial-gradient(circle at 20% 80%, rgba(180, 100, 200, 0.04) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 50%, rgba(255, 200, 220, 0.02) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* ذرات شناور (ستاره‌های مدرن) */
+        .particle {
+            position: fixed;
+            border-radius: 50%;
+            background: #ffe2eb;
+            opacity: 0.2;
+            pointer-events: none;
+            filter: blur(0.4px);
+            animation: floatParticle linear infinite alternate;
+            z-index: 0;
+        }
+
+        @keyframes floatParticle {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.15; }
+            100% { transform: translate(30px, -40px) scale(1.6); opacity: 0.5; }
+        }
+
+        /* کارت اصلی – لوکس و شفاف */
+        .card {
+            position: relative;
+            z-index: 2;
+            max-width: 620px;
+            width: 100%;
+            padding: 44px 38px 36px;
+            background: rgba(22, 12, 16, 0.55);
+            backdrop-filter: blur(18px) saturate(1.2);
+            -webkit-backdrop-filter: blur(18px) saturate(1.2);
+            border: 1px solid rgba(255, 210, 220, 0.06);
+            border-radius: 56px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 180, 200, 0.02) inset;
+            transition: all 0.3s ease;
+            text-align: center;
+            animation: floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes floatIn {
+            0% { opacity: 0; transform: translateY(40px) scale(0.94); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* خط تزئینی نازک و درخشان */
+        .ornament {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+        .ornament-line {
+            width: 40px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #dba1b0, transparent);
+            opacity: 0.5;
+        }
+        .ornament-diamond {
+            width: 6px;
+            height: 6px;
+            background: #dba1b0;
+            transform: rotate(45deg);
+            opacity: 0.4;
+            border-radius: 1px;
+        }
+
+        /* عنوان با ظرافت */
+        .title {
+            font-size: 20px;
+            font-weight: 300;
+            letter-spacing: 6px;
+            color: #cb9aa8;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            opacity: 0.7;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* متن شعر – اندازه متعادل، فونت نستعلیق‌گونه */
+        .poem {
+            font-family: 'Noto Nastaliq Urdu', 'Inter', serif;
+            font-size: 22px;
+            font-weight: 400;
+            line-height: 2.7;
+            color: #f3e3e8;
+            padding: 10px 6px 12px;
+            margin: 8px 0 10px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+            letter-spacing: 0.4px;
+        }
+
+        .poem .highlight {
+            color: #fec5d0;
+            font-weight: 600;
+            text-shadow: 0 0 30px rgba(255, 140, 180, 0.2);
+            background: linear-gradient(135deg, #fec5d0, #f8aec2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        /* نقل قول‌های ظریف */
+        .poem::before {
+            content: '❝';
+            font-size: 32px;
+            color: #dba1b0;
+            opacity: 0.15;
+            position: absolute;
+            right: -8px;
+            top: -8px;
+            font-family: serif;
+            line-height: 1;
+        }
+        .poem::after {
+            content: '❞';
+            font-size: 32px;
+            color: #dba1b0;
+            opacity: 0.15;
+            position: absolute;
+            left: -8px;
+            bottom: -8px;
+            font-family: serif;
+            line-height: 1;
+        }
+
+        /* تقسیم‌کننده با الماس */
+        .divider {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin: 18px auto 14px;
+            width: 80%;
+        }
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 180, 200, 0.2), transparent);
+        }
+        .divider-icon {
+            color: #dba1b0;
+            font-size: 12px;
+            opacity: 0.4;
+        }
+
+        /* پیام پایانی با شکوه */
+        .final-message {
+            font-size: 20px;
+            font-weight: 300;
+            color: #f5e3e9;
+            line-height: 2.2;
+            padding: 6px 0 12px;
+            letter-spacing: 0.3px;
+        }
+
+        .final-message .big {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fdcbd8, #fcaec4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(255, 140, 180, 0.2);
+            display: inline-block;
+        }
+
+        .final-message .emoji-glow {
+            display: inline-block;
+            filter: drop-shadow(0 0 12px rgba(255, 150, 200, 0.3));
+        }
+
+        /* امضای ظریف */
+        .signature {
+            margin-top: 26px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 180, 200, 0.06);
+            font-size: 15px;
+            font-weight: 300;
+            color: #b58b96;
+            letter-spacing: 1.5px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 6px 18px;
+        }
+
+        .signature strong {
+            color: #dfb3c0;
+            font-weight: 500;
+            letter-spacing: 0.8px;
+        }
+
+        .signature .heart-icon {
+            color: #f58b9f;
+            opacity: 0.5;
+            font-size: 14px;
+        }
+
+        /* ریسپانسیو برای موبایل */
+        @media (max-width: 500px) {
+            .card {
+                padding: 30px 20px 28px;
+                border-radius: 40px;
+            }
+            .poem {
+                font-size: 18px;
+                line-height: 2.6;
+                padding: 6px 4px;
+            }
+            .final-message {
+                font-size: 17px;
+            }
+            .final-message .big {
+                font-size: 22px;
+            }
+            .title {
+                font-size: 17px;
+                letter-spacing: 4px;
+            }
+            .signature {
+                font-size: 13px;
+                flex-direction: column;
+                gap: 4px;
+            }
+            .poem::before, .poem::after {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .poem {
+                font-size: 16px;
+                line-height: 2.4;
+            }
+            .final-message .big {
+                font-size: 19px;
+            }
+        }
+
+        /* اسکرول در صورت نیاز بدون اختلال */
+        body {
+            overflow-y: auto;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- ================================ -->
-    <!-- بخش اول: خوش‌آمدگویی              -->
-    <!-- ================================ -->
-    <section id="welcome" class="section welcome">
-        <div class="welcome-content">
-            <h1 class="main-title">یادگاری خاطرات ما</h1>
-            <p class="sub-title">برای رومیصا، از کسی که همیشه یادت می‌کنه</p>
-            <button class="music-toggle" aria-label="پخش موسیقی پس‌زمینه">
-                🎵
-            </button>
+    <!-- لایه‌ی نور پس‌زمینه -->
+    <div class="bg-aurora"></div>
+
+    <!-- ذرات شناور (ستاره‌های مدرن) -->
+    <script>
+        (function createParticles() {
+            const count = 35;
+            for (let i = 0; i < count; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                const size = 2 + Math.random() * 5;
+                p.style.width = size + 'px';
+                p.style.height = size + 'px';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.top = Math.random() * 100 + '%';
+                p.style.animationDuration = (6 + Math.random() * 12) + 's';
+                p.style.animationDelay = (Math.random() * 8) + 's';
+                p.style.opacity = 0.1 + Math.random() * 0.2;
+                document.body.appendChild(p);
+            }
+        })();
+    </script>
+
+    <!-- کارت اصلی -->
+    <div class="card">
+
+        <!-- خط تزئینی بالا -->
+        <div class="ornament">
+            <span class="ornament-line"></span>
+            <span class="ornament-diamond"></span>
+            <span class="ornament-line"></span>
         </div>
-    </section>
 
-    <!-- ================================ -->
-    <!-- بخش دوم: کارت‌های خاطرات          -->
-    <!-- ================================ -->
-    <section id="memories" class="section memories">
-        <h2 class="section-title">خاطرات خوب</h2>
-        <div class="cards-grid">
-            <!-- کارت ۱ -->
-            <div class="memory-card" data-id="1">
-                <div class="card-icon">🌸</div>
-                <h3>اولین دیدار</h3>
-                <p class="card-preview">اولین باری که همدیگه رو دیدیم...</p>
-                <div class="card-full hidden">
-                    اولین باری که همدیگه رو دیدیم، یه روز بهاری بود. هوا فوق‌العاده بود و من یادم نمیاد که چی گفتم، اما یادم میاد که چقدر لبخند زدی.
-                </div>
-                <button class="star-btn" aria-label="ذخیره خاطره">☆</button>
-            </div>
-
-            <!-- کارت ۲ -->
-            <div class="memory-card" data-id="2">
-                <div class="card-icon">☕</div>
-                <h3>قهوه‌های نیمه‌شب</h3>
-                <p class="card-preview">شب‌هایی که تا صبح حرف زدیم...</p>
-                <div class="card-full hidden">
-                    شب‌هایی که تا صبح حرف زدیم، با یه فنجون قهوه و هزار تا موضوع بی‌ربط. هنوزم اون قهوه‌ها رو یادمه.
-                </div>
-                <button class="star-btn" aria-label="ذخیره خاطره">☆</button>
-            </div>
-
-            <!-- کارت ۳ -->
-            <div class="memory-card" data-id="3">
-                <div class="card-icon">🌅</div>
-                <h3>غروب کنار دریا</h3>
-                <p class="card-preview">یه غروب قشنگ کنار دریا...</p>
-                <div class="card-full hidden">
-                    غروب اون روز یه جور خاصی قشنگ بود. انگار دریا هم می‌دونست که داریم یه خاطره‌ی خاص می‌سازیم.
-                </div>
-                <button class="star-btn" aria-label="ذخیره خاطره">☆</button>
-            </div>
+        <div class="title">
+            ✦ یادگاری ✦
         </div>
-    </section>
 
-    <!-- ================================ -->
-    <!-- بخش سوم: تایم‌لاین لحظات          -->
-    <!-- ================================ -->
-    <section id="timeline" class="section timeline">
-        <h2 class="section-title">لحظات به‌یادماندنی</h2>
-        <div class="timeline-container">
-            <div class="timeline-item">
-                <span class="timeline-date">بهار ۱۴۰۰</span>
-                <p>آشنایی و اولین مکالمه</p>
-            </div>
-            <div class="timeline-item">
-                <span class="timeline-date">تابستان ۱۴۰۰</span>
-                <p>اولین دیدار حضوری</p>
-            </div>
-            <div class="timeline-item">
-                <span class="timeline-date">پاییز ۱۴۰۱</span>
-                <p>یه سفر کوتاه و خاطره‌انگیز</p>
-            </div>
-            <div class="timeline-item">
-                <span class="timeline-date">زمستان ۱۴۰۲</span>
-                <p>شب‌های طولانی و حرف‌های بی‌پایان</p>
-            </div>
+        <!-- شعر با فونت نستعلیق و اندازه‌ی متعادل -->
+        <div class="poem">
+            <span class="highlight">تو را بجای همه‌ی کسانی که نشناختم دوست می‌دارم</span><br>
+            <span class="highlight">تو را بجای همه‌ی روزگارانی که نمی‌زیستم دوست می‌دارم</span><br>
+            <span class="highlight">برای خاطر عطر نام گرم و برفی که آب می‌شود</span><br>
+            <span class="highlight">و برای خاطر نخستین گنهم</span><br>
+            <span class="highlight">تو را بخاطر دوست داشتن دوست دارم</span><br>
+            <span class="highlight">تو را بجای همه‌ی کسانی که دوست می‌دارم دوست دارم</span>
         </div>
-    </section>
 
-    <!-- ================================ -->
-    <!-- بخش چهارم: پیام در بطری          -->
-    <!-- ================================ -->
-    <section id="message" class="section message">
-        <div class="letter-container">
-            <h2 class="section-title">پیام نهایی</h2>
-            <div class="letter">
-                <p>رومیصای عزیز،</p>
-                <p>این صفحه رو ساختم تا همیشه یادمون بمونه که چقدر لحظات قشنگی کنار هم داشتیم.</p>
-                <p>امیدوارم هر وقت دلت گرفت، بیای اینجا و لبخند بزنی.</p>
-                <p>همیشه دوستت دارم،</p>
-                <p class="signature">دوست همیشگی‌ات</p>
-            </div>
+        <!-- تقسیم‌کننده با الماس -->
+        <div class="divider">
+            <span class="divider-line"></span>
+            <span class="divider-icon">✦</span>
+            <span class="divider-line"></span>
         </div>
-    </section>
 
-    <!-- ================================ -->
-    <!-- بخش پنجم: گوشه‌ای از نقل‌قول‌ها  -->
-    <!-- ================================ -->
-    <section id="quotes" class="section quotes">
-        <h2 class="section-title">چیزایی که یاد گرفتم</h2>
-        <div class="quotes-container">
-            <div class="quote-item active">
-                <p>"ازت یاد گرفتم که مهربونی یعنی چی."</p>
-            </div>
-            <div class="quote-item">
-                <p>"خندیدن با تو، بهترین درمان هر روز بدی بود."</p>
-            </div>
-            <div class="quote-item">
-                <p>"یادت دادم که بعضی از آدما، برای همیشه توی قلب می‌مونن."</p>
-            </div>
+        <!-- جمله‌ی پایانی با درخشش -->
+        <div class="final-message">
+            <span class="big">در نگاهم اگه نیستی،</span> <br>
+            <span class="big">در خیالم سرشاری</span> 
+            <span class="emoji-glow" style="font-size:32px; line-height:1.4;">💫</span>
         </div>
-    </section>
 
-    <!-- ================================ -->
-    <!-- بخش ششم: آرزوها                 -->
-    <!-- ================================ -->
-    <section id="wishes" class="section wishes">
-        <h2 class="section-title">آرزوهای من برات</h2>
-        <ul class="wishes-list">
-            <li>❤️ همیشه شاد باشی</li>
-            <li>🌱 به آرزوهات برسی</li>
-            <li>🌟 هیچوقت تنهایی رو حس نکنی</li>
-            <li>💫 هر روزت بهتر از دیروز باشه</li>
-        </ul>
-    </section>
+        <!-- امضا -->
+        <div class="signature">
+            <span>برای <strong>[𝓡𝓸𝓶𝓲𝓼𝓪]</strong></span>
+            <span class="heart-icon">♥</span>
+            <span>از طرف <strong>[𝓗]</strong></span>
+        </div>
 
-    <!-- ================================ -->
-    <!-- دکمه‌ی بازگشت به بالا            -->
-    <!-- ================================ -->
-    <button id="backToTop" class="back-to-top" aria-label="بازگشت به بالا">↑</button>
+    </div>
 
-    <!-- ================================ -->
-    <!-- فوتر                           -->
-    <!-- ================================ -->
-    <footer class="footer">
-        <p>ساخته شده با احترام و خاطرات خوب - زمستان ۱۴۰۳</p>
-        <p class="version">نسخه 1.0</p>
-        <p class="made-with">ساخته شده با ❤️</p>
-        <p class="last-visit">آخرین بازدید: <span id="lastVisit">امروز</span></p>
-    </footer>
+    <script>
+        // پیام در کنسول با جلوه‌ای خاص
+        console.log('%c🌸 در نگاهم اگه نیستی، در خیالم سرشاری 🌸', 'font-size:20px; color:#f5b7c5; font-weight:600; text-shadow: 0 0 20px rgba(255,150,180,0.2);');
+        console.log('%c✨ همیشه در خاطره‌ها ماندگار ✨', 'font-size:14px; color:#c99aa8;');
+    </script>
 
-    <!-- جاوااسکریپت -->
-    <script src="scripts/app.js"></script>
 </body>
 </html>
